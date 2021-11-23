@@ -1,8 +1,9 @@
 package lady;
 
 import objet.Pions; 
+import utilitaire.*;
 
-public class function {
+public class Function {
 	
 	public static void createMap() {
 		
@@ -69,7 +70,7 @@ public class function {
 		}
 	}
 	
-	public static void menu() {
+	public static void menuGame() {
 		//
 	}
 	
@@ -89,7 +90,16 @@ public class function {
 					for (Pions element : Game.listPions ) {
 						
 						if ( element.getX() == i && element.getY() == j) {
+							
+							if ( element.getNumber() < 37 ) {
+								
+								System.out.print( Game.numList[element.getNumber()] );
+								
+							} else {
+								
 							System.out.print( element.getNumber());
+							
+							}
 						}
 					}
 				}else {
@@ -100,4 +110,64 @@ public class function {
 		}
 		System.out.print("\n");
 	}
+	
+	public static void movePawn(Pions pawn, int newX, int newY) {
+		Game.map[pawn.getX()][pawn.getY()] = Game.noir;
+		pawn.setX(newY);
+		pawn.setY(newX);
+		Game.map[pawn.getX()][pawn.getY()] = pawn.getIco();
+	}
+	
+	public static void namePlayers() {
+		
+		boolean checkChoicePlayerMode = false ;
+		String saveTmp ;
+		
+		System.out.print(ManageInOut.text1);
+		
+		do {
+			
+			System.out.print(ManageInOut.text2);
+			String choicePlayerMode = ManageInOut.userString();
+			
+			switch(choicePlayerMode) {
+			case "1": 
+				checkChoicePlayerMode = true;
+				
+				do {
+					System.out.print(ManageInOut.text3);
+					saveTmp = utilitaire.ManageInOut.userString() ;
+					saveTmp = saveTmp.toUpperCase().substring(0, 1) +  saveTmp.substring(1);
+					Game.joueur1 = saveTmp;
+				} while( Game.joueur1 == "Null") ;
+				break;
+			case "2":
+				checkChoicePlayerMode = true;
+				
+				do {
+					System.out.print(ManageInOut.text3);
+					saveTmp = utilitaire.ManageInOut.userString() ;
+					saveTmp = saveTmp.toUpperCase().substring(0, 1) +  saveTmp.substring(1);
+					Game.joueur1 = saveTmp;
+					
+					System.out.print(ManageInOut.text4);
+					saveTmp = utilitaire.ManageInOut.userString() ;
+					saveTmp = saveTmp.toUpperCase().substring(0, 1) +  saveTmp.substring(1);
+					Game.joueur2 = saveTmp;
+				} while( Game.joueur1 == "Null" || Game.joueur2 == "Null" ) ;
+				
+				System.out.print(Game.joueur1 + Game.joueur2);
+				break;
+			default:
+				System.out.println(ManageInOut.error1);
+			}
+		}while(checkChoicePlayerMode == false);
+		
+	}
+
 }
+	
+
+
+
+

@@ -1,9 +1,18 @@
 package utilitaire;
 
-public class Check {
+import objet.Pions; 
+import lady.Game;
 
-	public Check() {
-		// TODO Auto-generated constructor stub
+public class Check {
+	
+	static String[] checkList = new String[Game.lengthMapX*Game.lengthMapY+1];
+
+	public static String[] checkMove(Pions pawn) {
+		
+		if ( pawn.getIco() == Game.equipe1 || pawn.getIco() == Game.equipe2 ) {
+			
+		}
+		
 	}
 
 }
