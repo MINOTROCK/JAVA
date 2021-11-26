@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class ManageInOut {
 	
 	public static String error1 = "Mauvaise saisie !!" ;
+	public static String error2 = "Aucune saisie !!" ;
+	
 	public static String text1 = "Bienvenue dans le jeu de dame !!!\n\nQuel mode de jeu voulez vous choisir ?\n\n1) Robot\n2) 1 V 1\n";
 	public static String text2 = "\n:";
 	public static String text3 = "\nVeuillez choisir le nom du joueur 1\n\n:";
@@ -38,6 +40,8 @@ public class ManageInOut {
 	
 
 	public static String userString() {
+		
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		String s = sc.nextLine();
 		

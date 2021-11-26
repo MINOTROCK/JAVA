@@ -1,6 +1,8 @@
 package lady;
 
-import objet.Pions; 
+import java.util.ArrayList;
+
+import objet.*;  
 import utilitaire.*;
 
 public class Function {
@@ -34,7 +36,7 @@ public class Function {
 		for(int j=0 ; j<Game.lengthMapY  ; j++) {
 			System.out.println() ;
 			for(int i=0; i<Game.lengthMapX ; i++) {
-				System.out.print( Game.map[i][j]); 	
+				System.out.print(" " + Game.map[i][j]); 	
 			}
 		}
 		System.out.print("\n");
@@ -48,7 +50,7 @@ public class Function {
 			for(int i=0; i<Game.lengthMapX ; i++) {
 				
 				if(Game.map[i][j] == Game.noir ) {
-					Game.listPions.add(new Pions(Game.equipe1, 1, i, j, save));
+					Game.listPions.add(new Pions(Game.equipe1,Game.reineEquipe1,Game.equipe2,Game.reineEquipe2, 1, i, j, save));
 					Game.map[i][j] = Game.listPions.get(save).getIco();
 					save++;
 				}
@@ -62,7 +64,7 @@ public class Function {
 			for(int i=0; i<Game.lengthMapX ; i++) {
 				
 				if(Game.map[i][j] == Game.noir ) {
-					Game.listPions.add(new Pions(Game.equipe2, 2, i, j, save));
+					Game.listPions.add(new Pions(Game.equipe2,Game.reineEquipe2,Game.equipe1,Game.reineEquipe1, 2, i, j, save));
 					Game.map[i][j] = Game.listPions.get(saved).getIco();
 					save++;
 				}
@@ -75,7 +77,7 @@ public class Function {
 	}
 	
 	public static void endScreen() {
-		//
+		
 	}
 	
 	public static void printMapId(char icoPion, char icoQueen) {
@@ -91,19 +93,19 @@ public class Function {
 						
 						if ( element.getX() == i && element.getY() == j) {
 							
-							if ( element.getNumber() < 37 ) {
+							if ( element.getNumber() < 35 ) {
 								
-								System.out.print( Game.numList[element.getNumber()] );
+								System.out.print( " " + Game.numList[element.getNumber()] );
 								
 							} else {
 								
-							System.out.print( element.getNumber());
+							System.out.print( " " + ( element.getNumber() - 25 ));
 							
 							}
 						}
 					}
 				}else {
-					System.out.print( Game.map[i][j]); 
+					System.out.print(" " + Game.map[i][j]); 
 				}
 					
 			}
@@ -158,10 +160,49 @@ public class Function {
 				
 				System.out.print(Game.joueur1 + Game.joueur2);
 				break;
+			case "null" :
+				System.out.println(ManageInOut.error2);
+				break;
 			default:
 				System.out.println(ManageInOut.error1);
 			}
 		}while(checkChoicePlayerMode == false);
+		
+	}
+	
+	public static void printMove( ArrayList<CheckType> pawnMove ) {
+		
+		boolean save = false ;
+		
+		for(int j=0 ; j<Game.lengthMapY  ; j++) {
+			System.out.println() ;
+			for(int i=0; i<Game.lengthMapX ; i++) {
+				
+				for ( CheckType element : pawnMove ) {
+					
+					if ( element.getNewX() == i && element.getNewY() == j ) {
+						
+						System.out.print(" " + element.getIcoMove() );
+						save = true ;
+						
+					}
+				}
+				
+				if ( save == false ) {
+					System.out.print(" " + Game.map[i][j]); 	
+				}
+				
+				save = false ;	
+				
+			}
+		}
+		System.out.print("\n");
+	}
+	
+	public static void removePawn( Pions pawn ) {
+		
+		Game.map[pawn.getX()][pawn.getY()] = Game.noir ;
+		Game.listPions.remove(pawn) ;
 		
 	}
 
