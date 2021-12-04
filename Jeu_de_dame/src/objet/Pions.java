@@ -96,5 +96,13 @@ public class Pions {
 		public void setQueen(boolean queen) {
 			this.queen = queen;
 		}
+
+		@Override
+		public String toString() {
+			return "Pions [ico=" + ico + ", queenIco=" + queenIco + ", icoTarget=" + icoTarget + ", icoTargetQueen="
+					+ icoTargetQueen + ", team=" + team + ", x=" + x + ", y=" + y + ", number=" + number + ", queen="
+					+ queen + "]";
+		}
+		
 		
 }

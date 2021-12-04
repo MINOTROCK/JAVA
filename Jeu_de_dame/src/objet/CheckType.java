@@ -10,7 +10,6 @@ public class CheckType {
 	int eatY ;
 	
 	
-	
 	public CheckType(String icoMove, Pions checkPawn, int newX, int newY, int eatX, int eatY) {
 		super();
 		this.icoMove = icoMove;
@@ -20,6 +19,8 @@ public class CheckType {
 		this.eatX = eatX;
 		this.eatY = eatY;
 	}
+	
+	
 	public String getIcoMove() {
 		return icoMove;
 	}
@@ -56,5 +57,14 @@ public class CheckType {
 	public void setEatY(int eatY) {
 		this.eatY = eatY;
 	}
+
+
+	@Override
+	public String toString() {
+		return "CheckType [icoMove=" + icoMove + ", checkPawn=" + checkPawn + ", newX=" + newX + ", newY=" + newY
+				+ ", eatX=" + eatX + ", eatY=" + eatY + "]";
+	}
+	
+	
 	
 }
