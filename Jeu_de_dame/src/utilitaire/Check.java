@@ -152,7 +152,7 @@ public class Check {
 			
 			if ( element.getIco() == Game.equipe1 ) {
 				
-				if ( element.getY() == Game.lengthMapY ) {
+				if ( element.getY() == Game.lengthMapY - 1 ) {
 					
 					element.setQueen(true);
 					element.setIco(Game.reineEquipe1);

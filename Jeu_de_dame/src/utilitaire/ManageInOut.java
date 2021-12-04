@@ -26,7 +26,7 @@ public class ManageInOut {
 	public static String text6 = " à gagné la partie en ";
 	public static String text7 = " coups, les scores de victoires et de defaites ont été mis à jour .";
 	public static String text8 = " à obtenu une reine, représentée sous cette forme ";
-	public static String text9 = ", les reines peuvent se déplacer sur toutes leures diagonales \navec pour seule limite les bords du plateau";
+	public static String text9 = ", les reines peuvent se déplacer sur toutes leures diagonales \navec pour seule limite les bords du plateau\n";
 	public static String text10 = "\n\nEntrée utilisateur\n\n:";
 	public static String text11 = "";
 	public static String text12 = "";

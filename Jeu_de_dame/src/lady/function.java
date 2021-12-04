@@ -222,12 +222,8 @@ public class Function {
 					choiceMove = ManageInOut.userString() ;
 					
 					for ( CheckType element :  Check.checkList ) {
-						
-						if ( choiceMove == "null" ) {
 							
-							System.out.print(ManageInOut.error2);
-							
-						} else if (element.getIcoMove().equalsIgnoreCase(choiceMove) ) {
+						if (element.getIcoMove().equalsIgnoreCase(choiceMove) ) {
 							
 							checkChoiceMove = true ;
 							checkChar = true ;
