@@ -26,9 +26,9 @@ public class Check {
 		checkList.clear() ;
 		int save = 0 ;
 		
-		if ( pawn.isQueen() == false  ) {
+		
 			
-			if ( pawn.getX() + 1 <= Game.lengthMapX -1 && pawn.getY() + 1 <= Game.lengthMapY -1 && pawn.getTeam() == 1) {
+			if ( pawn.getX() + 1 <= Game.lengthMapX -1 && pawn.getY() + 1 <= Game.lengthMapY -1 && ( pawn.getTeam() == 1 || pawn.isQueen() == true))   {
 				
 				if ( Game.map[pawn.getX() + 1][pawn.getY() + 1] == Game.noir ) {
 						
@@ -36,89 +36,94 @@ public class Check {
 					save++ ;
 
 					
-				} else if ( pawn.getX() + 2  <= Game.lengthMapX -1 && pawn.getY() + 2 <= Game.lengthMapY -1 ) {
-					
-					if ( ( Game.map[pawn.getX() + 1][pawn.getY() + 1] == pawn.getIcoTarget() || Game.map[pawn.getX() + 1][pawn.getY() + 1] == pawn.getIcoTargetQueen() ) && Game.map[pawn.getX() + 2][pawn.getY() + 2] == Game.noir ) {
-						
-						checkList.add(new CheckType( Integer.toString(save) , pawn ,pawn.getX() + 2 , pawn.getY() + 2, pawn.getX() + 1 ,pawn.getY() + 1 )) ;
-						save++ ;
-
-						
-					}
-					
-				}
+				} 
 				
 			
 			} 
 			
-			if ( pawn.getX() + 1 <= Game.lengthMapX -1 && pawn.getY() - 1 >= 0 && pawn.getTeam() == 2) {
+			if ( pawn.getX() + 2  <= Game.lengthMapX -1 && pawn.getY() + 2 <= Game.lengthMapY -1 ) {
+				
+				if ( ( Game.map[pawn.getX() + 1][pawn.getY() + 1] == pawn.getIcoTarget() || Game.map[pawn.getX() + 1][pawn.getY() + 1] == pawn.getIcoTargetQueen() ) && Game.map[pawn.getX() + 2][pawn.getY() + 2] == Game.noir ) {
+					
+					checkList.add(new CheckType( Integer.toString(save) , pawn ,pawn.getX() + 2 , pawn.getY() + 2, pawn.getX() + 1 ,pawn.getY() + 1 )) ;
+					save++ ;
+
+					
+				}
+				
+			}
+			
+			
+			if ( pawn.getX() + 1 <= Game.lengthMapX -1 && pawn.getY() - 1 >= 0 && ( pawn.getTeam() == 2 || pawn.isQueen() == true)) {
 							
 				if ( Game.map[pawn.getX() + 1][pawn.getY() - 1] == Game.noir ) {
 						
 					checkList.add(new CheckType( Integer.toString(save) , pawn , pawn.getX() + 1 , pawn.getY() - 1, -1 ,-1)) ;
 					save++ ;
 
+				} 
+			} 
+			
+			if ( pawn.getX() + 2  <= Game.lengthMapX - 1 && pawn.getY() - 2 >= 0 ) {
+				
+				if ( ( Game.map[pawn.getX() + 1][pawn.getY() - 1] == pawn.getIcoTarget() || Game.map[pawn.getX() + 1][pawn.getY() - 1] == pawn.getIcoTargetQueen() ) && Game.map[pawn.getX() + 2][pawn.getY() - 2] == Game.noir ) {
 					
-				} else if ( pawn.getX() + 2  <= Game.lengthMapX - 1 && pawn.getY() - 2 >= 0 ) {
+					checkList.add(new CheckType( Integer.toString(save) , pawn , pawn.getX() + 2 , pawn.getY() - 2 , pawn.getX() + 1 ,pawn.getY() - 1 )) ;
+					save++ ;
 					
-					if ( ( Game.map[pawn.getX() + 1][pawn.getY() - 1] == pawn.getIcoTarget() || Game.map[pawn.getX() + 1][pawn.getY() - 1] == pawn.getIcoTargetQueen() ) && Game.map[pawn.getX() + 2][pawn.getY() - 2] == Game.noir ) {
-						
-						checkList.add(new CheckType( Integer.toString(save) , pawn , pawn.getX() + 2 , pawn.getY() - 2 , pawn.getX() + 1 ,pawn.getY() - 1 )) ;
-						save++ ;
-						
-						
-					}
 					
 				}
 				
+			}
 			
-			} 
-			
-			if ( pawn.getX() - 1 >= 0 && pawn.getY() - 1 >= 0 && pawn.getTeam() == 2 ) {
+			if ( pawn.getX() - 1 >= 0 && pawn.getY() - 1 >= 0 && ( pawn.getTeam() == 2 || pawn.isQueen() == true)) {
 				
 				if ( Game.map[pawn.getX() - 1][pawn.getY() - 1] == Game.noir ) {
 						
 					checkList.add(new CheckType( Integer.toString(save) , pawn , pawn.getX() - 1 , pawn.getY() - 1, -1 ,-1)) ;
 					save++ ;
 					
-				} else if ( pawn.getX() - 2   >= 0 && pawn.getY() - 2 >= 0) {
-					
-					if ( ( Game.map[pawn.getX() - 1][pawn.getY() - 1] == pawn.getIcoTarget() || Game.map[pawn.getX() - 1][pawn.getY() - 1] == pawn.getIcoTargetQueen() ) && Game.map[pawn.getX() - 2][pawn.getY() - 2] == Game.noir ) {
-						
-						checkList.add(new CheckType( Integer.toString(save) , pawn , pawn.getX() - 2 , pawn.getY() - 2 , pawn.getX() - 1 ,pawn.getY() - 1 )) ;
-						save++ ;
-						
-					}
-					
-				}
+				} 
 				
 			
 			}
 			
-			if ( pawn.getX() - 1 >= 0 && pawn.getY() + 1 <= Game.lengthMapY - 1 && pawn.getTeam() == 1 ) {
+			if ( pawn.getX() - 2   >= 0 && pawn.getY() - 2 >= 0) {
+				
+				if ( ( Game.map[pawn.getX() - 1][pawn.getY() - 1] == pawn.getIcoTarget() || Game.map[pawn.getX() - 1][pawn.getY() - 1] == pawn.getIcoTargetQueen() ) && Game.map[pawn.getX() - 2][pawn.getY() - 2] == Game.noir ) {
+					
+					checkList.add(new CheckType( Integer.toString(save) , pawn , pawn.getX() - 2 , pawn.getY() - 2 , pawn.getX() - 1 ,pawn.getY() - 1 )) ;
+					save++ ;
+					
+				}
+				
+			}
+			
+			if ( pawn.getX() - 1 >= 0 && pawn.getY() + 1 <= Game.lengthMapY - 1 && ( pawn.getTeam() == 1 || pawn.isQueen() == true) ) {
 							
 							if ( Game.map[pawn.getX() - 1][pawn.getY() + 1] == Game.noir ) {
 									
-								checkList.add(new CheckType( Integer.toString(save) , pawn , pawn.getX() - 1 , pawn.getY() + 1, -1 ,-1)) ;
+								checkList.add(new CheckType( Integer.toString(save) , pawn , pawn.getX() - 1 , pawn.getY() + 1, -1 ,-1 )) ;
 								save++ ;
 								
 								
-							} else if ( pawn.getX() - 2   >= 0 && pawn.getY() + 2 <= Game.lengthMapY - 1 ) {
-								
-								if ( ( Game.map[pawn.getX() - 1][pawn.getY() + 1] == pawn.getIcoTarget() || Game.map[pawn.getX() - 1][pawn.getY() + 1] == pawn.getIcoTargetQueen() ) && Game.map[pawn.getX() - 2][pawn.getY() + 2] == Game.noir ) {
-									
-									checkList.add(new CheckType( Integer.toString(save) , pawn , pawn.getX() - 2 , pawn.getY() + 2 , pawn.getX() - 1 ,pawn.getY() + 1 )) ;
-									save++ ;
-									
-								}	
-							}
+							} 
 						}
 			
+			if ( pawn.getX() - 2   >= 0 && pawn.getY() + 2 <= Game.lengthMapY - 1 ) {
+				
+				if ( ( Game.map[pawn.getX() - 1][pawn.getY() + 1] == pawn.getIcoTarget() || Game.map[pawn.getX() - 1][pawn.getY() + 1] == pawn.getIcoTargetQueen() ) && Game.map[pawn.getX() - 2][pawn.getY() + 2] == Game.noir ) {
+					
+					checkList.add(new CheckType( Integer.toString(save) , pawn , pawn.getX() - 2 , pawn.getY() + 2 , pawn.getX() - 1 ,pawn.getY() + 1 )) ;
+					save++ ;
+					
+				}	
+			}
 		
 			
 			
 			
-		} // else Queen 
+		
 		
 		
 		
@@ -144,6 +149,24 @@ public class Check {
 				}
 			}
 		}
+	}
+	
+
+	public static boolean checkEatSinglePawn( Pions pawn ) {
+		
+		checkMove(pawn) ;
+		
+		for ( CheckType element : checkList ) {
+			
+			if ( element.getEatX() != -1 ) {
+				
+				return false ;
+			}
+		}
+		
+		return true ;
+		
+		
 	}
 	
 	public static void checkLady() {

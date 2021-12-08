@@ -1,7 +1,5 @@
 package lady;
-
 import java.util.ArrayList;
-
 import objet.*;  
 import utilitaire.*;
 
@@ -92,20 +90,13 @@ public class Function {
 			do {
 				checkChoicePawnToMove = false ;
 				
-				Check.checkEatPawn( 1 );
-				
-				if ( Check.checkEat.size() ==  -1) {
-					printMapId( Game.equipe1 , Game.reineEquipe1  ) ; //, Check.checkEat
-					//
-				} else {
-					
 					printMapId( Game.equipe1 , Game.reineEquipe1  ) ; //, Game.listPions
-					
+				
 					do {
 						
 						checkChar = false ;
 						
-						System.out.print(ManageInOut.text10);
+						System.out.print(ManageInOut.text5 + Game.joueur1 + ManageInOut.text10);
 						choicePawnToMove  = ManageInOut.userString() ;
 						
 						if ( choicePawnToMove == "null" ) {
@@ -172,7 +163,7 @@ public class Function {
 					do {
 						checkChoiceMove = false ;
 						checkChar = false ;
-						System.out.print(ManageInOut.text10);
+						System.out.print(ManageInOut.text11);
 						choiceMove = ManageInOut.userString() ;
 						
 						if ( choiceMove == "null" ) {
@@ -206,43 +197,47 @@ public class Function {
 						
 						 
 					} while ( checkChoiceMove == false ) ;
-					
+					movePawn(  Game.listPions.get(savePawn) , saveMoveY, saveMoveX  ) ;
+					removePawn ( saveEatX , saveEatY ) ;
 					
 				do {
 					
 					Check.eatTwoOnce = false ;
-					movePawn(  Game.listPions.get(savePawn) , saveMoveY, saveMoveX  ) ;
-					removePawn ( saveEatX , saveEatY ) ;
 					Check.checkEnd( 2 ) ;
 					Check.checkLady() ;
-					Check.checkMove( Game.listPions.get(savePawn));
-					printMoveEat( Check.checkList ) ;
 					
-					System.out.print(ManageInOut.text10);
-					choiceMove = ManageInOut.userString() ;
+					if ( saveEatX != -1  ) {
+						
+						Check.checkMove( Game.listPions.get(savePawn));
+						printMove( Check.checkList ) ;
+						System.out.print(ManageInOut.text10);
+						choiceMove = ManageInOut.userString() ;
 					
-					for ( CheckType element :  Check.checkList ) {
-							
-						if (element.getIcoMove().equalsIgnoreCase(choiceMove) ) {
-							
-							checkChoiceMove = true ;
-							checkChar = true ;
-							saveMoveX = element.getNewX();
-							saveMoveY = element.getNewY();
-							saveEatX = element.getEatX();
-							saveEatY = element.getEatY();
-							
-							
-						} else if ( checkChar == false ) {
-							
-							System.out.print(ManageInOut.error1);
-							
-						}
+						for ( CheckType element :  Check.checkList ) {
+								
+							if (element.getIcoMove().equalsIgnoreCase(choiceMove) ) {
+								
+								checkChoiceMove = true ;
+								checkChar = true ;
+								saveMoveX = element.getNewX();
+								saveMoveY = element.getNewY();
+								saveEatX = element.getEatX();
+								saveEatY = element.getEatY();
+								savePawn-- ;
+								
+							} else if ( checkChar == false ) {
+								
+								System.out.print(ManageInOut.error1);
+								
+							}
+						} 
 					}
+					movePawn(  Game.listPions.get(savePawn) , saveMoveY, saveMoveX  ) ;
+					removePawn ( saveEatX , saveEatY ) ;
+					System.out.print(saveEatX +" " + saveEatY);
 					
 				} while ( Check.eatTwoOnce == true ) ;
 				
-				}
 				
 				turnOf = 2 ;
 				
@@ -255,21 +250,14 @@ public class Function {
 			
 			do {
 				checkChoicePawnToMove = false ;
-				
-				Check.checkEatPawn( 1 );
-				
-				if ( Check.checkEat.size() ==  -1) {
-					printMapId( Game.equipe2 , Game.reineEquipe2  ) ; //, Check.checkEat
-					//
-				} else {
 					
 					printMapId( Game.equipe2 , Game.reineEquipe2  ) ; //, Game.listPions
-					
+				
 					do {
 						
 						checkChar = false ;
-						
-						System.out.print(ManageInOut.text10);
+					
+						System.out.print(ManageInOut.text5 + Game.joueur2 + ManageInOut.text10);
 						choicePawnToMove  = ManageInOut.userString() ;
 						
 						if ( choicePawnToMove == "null" ) {
@@ -336,7 +324,7 @@ public class Function {
 					do {
 						checkChoiceMove = false ;
 						checkChar = false ;
-						System.out.print(ManageInOut.text10);
+						System.out.print(ManageInOut.text11);
 						choiceMove = ManageInOut.userString() ;
 						
 						if ( choiceMove == "null" ) {
@@ -371,46 +359,46 @@ public class Function {
 						 
 					} while ( checkChoiceMove == false ) ;
 					
-					
+					movePawn(  Game.listPions.get(savePawn) , saveMoveY, saveMoveX  ) ;
+					removePawn ( saveEatX , saveEatY ) ;
 				do {
 					
 					Check.eatTwoOnce = false ;
-					movePawn(  Game.listPions.get(savePawn) , saveMoveY, saveMoveX  ) ;
-					removePawn ( saveEatX , saveEatY ) ;
 					Check.checkEnd( 1 ) ;
 					Check.checkLady() ;
-					Check.checkMove( Game.listPions.get(savePawn));
-					printMoveEat( Check.checkList ) ;
 					
-					System.out.print(ManageInOut.text10);
-					choiceMove = ManageInOut.userString() ;
-					
-					for ( CheckType element :  Check.checkList ) {
+					if ( saveEatX != -1  ) {
 						
-						if ( choiceMove == "null" ) {
-							
-							System.out.print(ManageInOut.error2);
-							
-						} else if (element.getIcoMove().equalsIgnoreCase(choiceMove) ) {
-							
-							checkChoiceMove = true ;
-							checkChar = true ;
-							saveMoveX = element.getNewX();
-							saveMoveY = element.getNewY();
-							saveEatX = element.getEatX();
-							saveEatY = element.getEatY();
-							
-							
-						} else if ( checkChar == false ) {
-							
-							System.out.print(ManageInOut.error1);
-							
-						}
+						Check.checkMove( Game.listPions.get(savePawn));
+						printMove( Check.checkList ) ;
+						System.out.print(ManageInOut.text11);
+						choiceMove = ManageInOut.userString() ;
+					
+						for ( CheckType element :  Check.checkList ) {
+								
+							if (element.getIcoMove().equalsIgnoreCase(choiceMove) ) {
+								
+								checkChoiceMove = true ;
+								checkChar = true ;
+								saveMoveX = element.getNewX();
+								saveMoveY = element.getNewY();
+								saveEatX = element.getEatX();
+								saveEatY = element.getEatY();
+								savePawn-- ;
+								
+								
+							} else if ( checkChar == false ) {
+								
+								System.out.print(ManageInOut.error1);
+								
+							}
+						} 
 					}
+					movePawn(  Game.listPions.get(savePawn) , saveMoveY, saveMoveX  ) ;
+					removePawn ( saveEatX , saveEatY ) ;
 					
 				} while ( Check.eatTwoOnce == true ) ;
 				
-				}
 				
 				turnOf = 1 ;
 				
@@ -442,7 +430,7 @@ public class Function {
 					
 					for (Pions element : Game.listPions ) {
 						
-						if ( element.getX() == i && element.getY() == j) {
+						if ( element.getX() == i && element.getY() == j ) {
 							
 							if ( element.getNumber() < 35 ) {
 								
@@ -467,6 +455,7 @@ public class Function {
 		System.out.print("\n");
 	}
 	
+	
 	public static void movePawn(Pions pawn, int newX, int newY) {
 		Game.map[pawn.getX()][pawn.getY()] = Game.noir;
 		pawn.setY(newX);
@@ -476,30 +465,11 @@ public class Function {
 	
 	public static void startGame() {
 		
-		boolean checkChoicePlayerMode = false ;
 		String saveTmp ;
 		
 		System.out.print(ManageInOut.text1);
 		
-		do {
-			
-			System.out.print(ManageInOut.text2);
-			String choicePlayerMode = ManageInOut.userString();
-			
-			switch(choicePlayerMode) {
-			case "1": 
-				checkChoicePlayerMode = true;
-				
-				do {
-					System.out.print(ManageInOut.text3);
-					saveTmp = utilitaire.ManageInOut.userString() ;
-					saveTmp = saveTmp.toUpperCase().substring(0, 1) +  saveTmp.substring(1);
-					Game.joueur1 = saveTmp;
-				} while( Game.joueur1 == "Null") ;
-				break;
-			case "2":
-				checkChoicePlayerMode = true;
-				
+
 				do {
 					System.out.print(ManageInOut.text3);
 					saveTmp = utilitaire.ManageInOut.userString() ;
@@ -511,27 +481,15 @@ public class Function {
 					saveTmp = saveTmp.toUpperCase().substring(0, 1) +  saveTmp.substring(1);
 					Game.joueur2 = saveTmp;
 				} while( Game.joueur1 == "Null" || Game.joueur2 == "Null" ) ;
-				
-				System.out.print(Game.joueur1 + Game.joueur2);
-				break;
-			case "null" :
-				System.out.println(ManageInOut.error2);
-				break;
-			default:
-				System.out.println(ManageInOut.error1);
-			}
-		}while(checkChoicePlayerMode == false);
 		
 		printMap() ;
-		createFileLog() ;
+
 		
 		
 	}
 	
 	public static void createFileLog() {
-    
-		//
-	
+
 	}
 	
 	public static void printMove( ArrayList<CheckType> pawnMove ) {
@@ -550,39 +508,6 @@ public class Function {
 						save = true ;
 						
 					}
-				}
-				
-				if ( save == false ) {
-					System.out.print(" " + Game.map[i][j]); 	
-				}
-				
-				save = false ;	
-				
-			}
-		}
-		System.out.print("\n");
-	}
-	
-public static void printMoveEat( ArrayList<CheckType> pawnMove ) {
-		
-		boolean save = false ;
-		
-		for(int j=0 ; j<Game.lengthMapY  ; j++) {
-			System.out.println() ;
-			for(int i=0; i<Game.lengthMapX ; i++) {
-				
-				for ( CheckType element : pawnMove ) {
-					
-					if ( element.getNewX() == i && element.getNewY() == j && element.getEatX() != -1 ) {
-						
-						System.out.print(" " + element.getIcoMove() );
-						save = true ;
-						Check.eatTwoOnce = true ;
-						
-					} // else if (element.getNewX() == i && element.getNewY() == j  ) {
-						
-//						Check.checkList.remove(element) ;
-//					}
 				}
 				
 				if ( save == false ) {
